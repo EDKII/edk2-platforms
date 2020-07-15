@@ -24,7 +24,7 @@ static CHAR16 mUsbFnDxeSerialNumber[] = L"INT123456";
 // replaced with device-specific unique values.
 //
 static GUID mSmBiosUniqueGuid = {
-        0x5e24fe9c, 0xc8d0, 0x45bd, 0xa7, 0x9f, 0x54, 0xea, 0x5f, 0xbd, 0x3d, 0x97
+        0x5e24fe9c, 0xc8d0, 0x45bd, { 0xa7, 0x9f, 0x54, 0xea, 0x5f, 0xbd, 0x3d, 0x97}
     };
 
 EFI_USBFN_IO_PROTOCOL         mUsbFunIoProtocol = {
@@ -413,7 +413,6 @@ GetMaxTransferSize (
   @retval EFI_BUFFER_TOO_SMALL  A parameter is invalid.
 
 **/
-STATIC
 EFI_STATUS
 EFIAPI
 GetDeviceSerialNumber (

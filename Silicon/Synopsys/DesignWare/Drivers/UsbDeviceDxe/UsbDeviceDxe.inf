@@ -33,6 +33,7 @@
 
 [Packages]
   MdePkg/MdePkg.dec
+  Silicon/Synopsys/DesignWare/DesignWare.dec
 
 [LibraryClasses]
   BaseMemoryLib
