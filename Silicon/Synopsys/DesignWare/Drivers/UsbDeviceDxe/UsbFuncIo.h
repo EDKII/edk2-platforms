@@ -11,10 +11,8 @@
 #include <Uefi.h>
 #include <Library/BaseMemoryLib.h>
 #include <Library/DevicePathLib.h>
-#include <Library/DriverLib.h>
 #include <Library/PcdLib.h>
 #include <Protocol/EfiUsbFnIo.h>
-#include <Library/PmicLib.h>
 #include <Library/UsbDeviceLib.h>
 #include <Library/PrintLib.h>
 #include "UsbIoNode.h"

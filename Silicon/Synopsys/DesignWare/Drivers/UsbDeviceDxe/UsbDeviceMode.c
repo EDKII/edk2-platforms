@@ -9,8 +9,6 @@
 #include <Library/BaseLib.h>
 #include <Library/UefiBootServicesTableLib.h>
 #include <Library/IoLib.h>
-#include <PlatformBaseAddresses.h>
-#include <ScAccess.h>
 #include "XdciUtility.h"
 #include "UsbDeviceMode.h"
 #include "UsbDeviceDxe.h"
@@ -50,28 +48,7 @@ BOOLEAN mXdciRun = FALSE;
 STATIC VOID
 XhciSwitchSwid(BOOLEAN enable)
 {
-  UINTN                             XhciPciMmBase;
-  EFI_PHYSICAL_ADDRESS              XhciMemBaseAddress;
-  UINT32                            DualRoleCfg0;
-  UINT32                            DualRoleCfg1;
 
-  XhciPciMmBase = MmPciAddress (0, 0, PCI_DEVICE_NUMBER_XHCI, PCI_FUNCTION_NUMBER_XHCI, 0);
-  XhciMemBaseAddress = MmioRead32 ((UINTN) (XhciPciMmBase + R_XHCI_MEM_BASE)) & B_XHCI_MEM_BASE_BA;
-  DEBUG ((DEBUG_INFO, "XhciPciMmBase=%x, XhciMemBaseAddress=%x\n", XhciPciMmBase, XhciMemBaseAddress));
-
-  DualRoleCfg0 = MmioRead32 ((UINTN)(XhciMemBaseAddress + R_XHCI_MEM_DUAL_ROLE_CFG0));
-  if (enable) {
-    DualRoleCfg0 = DualRoleCfg0 | (1 << 24) | (1 << 21) | (1 << 20);
-    DEBUG ((DEBUG_INFO, "DualRoleCfg0 : Set SW ID : 0x%x \n", DualRoleCfg0));
-  }
-  else {
-    DualRoleCfg0 = DualRoleCfg0 & ~(1 << 24) & ~(1 << 21) & ~(1 << 20);
-    DEBUG ((DEBUG_INFO, "DualRoleCfg0 : Clear SW ID : 0x%x \n", DualRoleCfg0));
-  }
-  MmioWrite32 ((UINTN)(XhciMemBaseAddress + R_XHCI_MEM_DUAL_ROLE_CFG0), DualRoleCfg0);
-
-  DualRoleCfg1 = MmioRead32 ((UINTN)(XhciMemBaseAddress + R_XHCI_MEM_DUAL_ROLE_CFG1));
-  DEBUG ((DEBUG_INFO, "DualRoleCfg1 : 0x%x \n", DualRoleCfg1));
 }
 
 VOID

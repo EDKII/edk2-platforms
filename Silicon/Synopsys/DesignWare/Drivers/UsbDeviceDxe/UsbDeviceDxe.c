@@ -25,25 +25,7 @@ PlatformSpecificInit (
   VOID
   )
 {
-  UINTN                 XhciPciMmBase;
-  EFI_PHYSICAL_ADDRESS  XhciMemBaseAddress;
 
-  XhciPciMmBase   = MmPciAddress (
-                      0,
-                      0,
-                      PCI_DEVICE_NUMBER_XHCI,
-                      PCI_FUNCTION_NUMBER_XHCI,
-                      0
-                      );
-
-
-  XhciMemBaseAddress = MmioRead32 ((UINTN) (XhciPciMmBase + R_XHCI_MEM_BASE)) & B_XHCI_MEM_BASE_BA;
-  DEBUG ((DEBUG_INFO, "XhciPciMmBase=%x, XhciMemBaseAddress=%x\n", XhciPciMmBase, XhciMemBaseAddress));
-
-  MmioWrite32 ((UINTN)(XhciMemBaseAddress + R_XHCI_MEM_DUAL_ROLE_CFG0), 0x1310800);
-
-  PmicUSBSwitchControl (TRUE);//conduction USB switch.
-  return;
 }
 
 

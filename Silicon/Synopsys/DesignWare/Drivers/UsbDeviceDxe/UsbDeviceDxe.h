@@ -9,15 +9,15 @@
 #define __USB_DEVICE_DXE_H__
 
 #include <Uefi.h>
+#include <Library/UefiLib.h>
 #include <Library/BaseMemoryLib.h>
 #include <Library/DevicePathLib.h>
-#include <Library/DriverLib.h>
 #include <Library/PcdLib.h>
 #include <Library/IoLib.h>
+#include <Protocol/PciIo.h>
 #include <Protocol/EfiUsbFnIo.h>
 #include <Protocol/UsbDeviceModeProtocol.h>
-#include <PlatformBaseAddresses.h>
-#include <ScAccess.h>
+#include <IndustryStandard/Pci.h>
 #include "UsbFuncIo.h"
 #include "UsbDeviceMode.h"
 
@@ -28,6 +28,8 @@
 #define USBFUIO_CONTEXT_FROM_PROTOCOL(a)   CR (a, USB_XDCI_DEV_CONTEXT, UsbFunIoProtocol, EFI_USB_DEV_SIGNATURE)
 #define USBUSBD_CONTEXT_FROM_PROTOCOL(a)   CR (a, USB_XDCI_DEV_CONTEXT, UsbDevModeProtocol, EFI_USB_DEV_SIGNATURE)
 
+#define R_OTG_BAR0                         0x10        // BAR 0
+#define B_OTG_BAR0_BA                      0xFFE00000  // Base Address
 
 typedef struct _USB_FUIO_EVENT_NODE   USB_FUIO_EVENT_NODE;
 

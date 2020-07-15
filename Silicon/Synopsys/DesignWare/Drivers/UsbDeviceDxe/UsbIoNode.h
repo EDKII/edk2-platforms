@@ -11,7 +11,6 @@
 #include <Uefi.h>
 #include <Library/BaseMemoryLib.h>
 #include <Library/DevicePathLib.h>
-#include <Library/DriverLib.h>
 
 #define  USB_DEBUG_MEM_NODE_INFO  EFI_D_INIT
 #define  USB_DEBUG_MEM_NODE_ERROR EFI_D_ERROR

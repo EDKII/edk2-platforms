@@ -107,76 +107,7 @@ DetectPort (
   OUT EFI_USBFN_PORT_TYPE    *PortType
   )
 {
-  USB_XDCI_DEV_CONTEXT  *UsbFuncIoDevPtr;
-  EFI_STATUS            Status;
-  UINT8                 Value8;
-
-  DEBUG ((USB_FUIO_DEBUG_INFO, "DetectPort - Entry\n"));
-
-  UsbFuncIoDevPtr = USBFUIO_CONTEXT_FROM_PROTOCOL (This);
-
-  //
-  // USBSRCDETRSLT Bit[5:2]
-  // Result of USB HW Source Detection algorithm
-  // Power-Domain: VRTC
-  // Result of USB HW Source Detection algorithm :
-  // 0000 = Not determined
-  // 0001 = SDP Attached
-  // 0010 = DCP Attached
-  // 0011 = CDP Attached
-  // 0100 = ACA Attached
-  // 0101 = SE1 Attached
-  // 0110 = MHL Attached
-  // 0111 = Floating D+/D- Attached
-  // 1000 = Other Attached
-  // 1001 = DCP detected by ext. USB PHY
-  // 1010-1111 = Rsvd
-  // Reset: 0000B
-  //
-
-  Value8 =PmicRead8 (0x5E, 0X29);
-  if ((Value8 & 0x03) != 0x02) {
-    *PortType = EfiUsbUnknownPort;
-    Status = EFI_NOT_READY;
-    goto out;
-  }
-
-  Value8 = Value8 >> 2 & 0x0f;
-  Status = EFI_SUCCESS;
-  switch (Value8) {
-    case 1:
-      *PortType = EfiUsbStandardDownstreamPort;
-      break;
-    case 2:
-      *PortType = EfiUsbDedicatedChargingPort;
-      break;
-    case 3:
-      *PortType = EfiUsbChargingDownstreamPort;
-      break;
-
-    case 4:
-    case 5:
-    case 6:
-    case 7:
-    case 8:
-    case 9:
-      *PortType = EfiUsbUnknownPort;
-      break;
-    case 0:
-    case 10:
-    case 11:
-    case 12:
-    case 13:
-    case 14:
-    case 15:
-      *PortType = EfiUsbUnknownPort;
-      Status = EFI_NOT_READY;
-     break;
-  }
-
-out:
-  DEBUG ((USB_FUIO_DEBUG_INFO, "DetectPort - Exit\n"));
-  return EFI_SUCCESS;
+  return EFI_UNSUPPORTED;
 }
 
 

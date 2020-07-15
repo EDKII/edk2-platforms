@@ -33,20 +33,16 @@
 
 [Packages]
   MdePkg/MdePkg.dec
-  BroxtonSiPkg/BroxtonSiPkg.dec
-  BroxtonPlatformPkg/PlatformPkg.dec
 
 [LibraryClasses]
   BaseMemoryLib
   DebugLib
   DevicePathLib
   MemoryAllocationLib
-  TimerLib
   PcdLib
   UefiBootServicesTableLib
   UefiDriverEntryPoint
   UefiLib
-  PmicLib
 
 [Protocols]
   gEfiUsbDeviceModeProtocolGuid
