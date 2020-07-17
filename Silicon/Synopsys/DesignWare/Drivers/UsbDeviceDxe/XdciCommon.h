@@ -25,7 +25,8 @@ typedef enum {
   USB_SPEED_HIGH  = 0,
   USB_SPEED_FULL,
   USB_SPEED_LOW,
-  USB_SPEED_SUPER = 4
+  USB_SPEED_SUPER = 4,
+  USB_SPEED_SUPER_PLUS
 } USB_SPEED;
 
 typedef enum {

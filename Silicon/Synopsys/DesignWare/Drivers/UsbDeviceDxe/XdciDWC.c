@@ -93,6 +93,7 @@ DwcXdciCoreGetCtrlMps (
       *mps = DWC_XDCI_LS_CTRL_EP_MPS;
       break;
     case USB_SPEED_SUPER:
+    case USB_SPEED_SUPER_PLUS:
       *mps = DWC_XDCI_SS_CTRL_EP_MPS;
       break;
     default:
@@ -851,7 +852,7 @@ DwcXdciProcessDeviceResetDone (
   //
   // Put the other PHY into suspend
   //
-  if (CoreHandle->ActualSpeed == USB_SPEED_SUPER) {
+  if (CoreHandle->ActualSpeed >= USB_SPEED_SUPER) {
     //
     // Put HS PHY to suspend
     //
